@@ -1,0 +1,2 @@
+#! @shell@ -e
+exec @bindir@/nix-store --gc "$@"
