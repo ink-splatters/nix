@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE book SYSTEM "/nix/current/xml/dtd/docbook/docbookx.dtd"
+[
+<!ENTITY introduction SYSTEM "introduction.xml">
+<!ENTITY installation SYSTEM "installation.xml">
+<!ENTITY nix-reference SYSTEM "nix-reference.xml">
+<!ENTITY troubleshooting SYSTEM "troubleshooting.xml">
+<!ENTITY bugs SYSTEM "bugs.xml">
+]>
+
+<book>
+  <title>Nix: The Manual</title>
+
+  &introduction;
+  &installation;
+
+  <chapter>
+    <title>A Guided Tour</title>
+    <para>
+      Bla bla
+    </para>
+  </chapter>
+
+  <chapter>
+    <title>Fix Language Reference</title>
+    <para>
+      Bla bla
+    </para>
+  </chapter>
+
+  <chapter>
+    <title>Nix Syntax and Semantics</title>
+    <para>
+      Bla bla
+    </para>
+  </chapter>
+
+  <appendix>
+    <title>Command Reference</title>
+    &nix-reference;
+  </appendix>
+
+  &troubleshooting;
+  &bugs;
+
+</book>
