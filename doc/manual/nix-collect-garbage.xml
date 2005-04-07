@@ -1,0 +1,29 @@
+<refentry>
+  
+<refnamediv>
+  <refname>nix-collect-garbage</refname>
+  <refpurpose>delete unreachable store paths</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+  <cmdsynopsis>
+    <command>nix-collect-garbage</command>
+    <group choice='opt'>
+      <arg choice='plain'><option>--print-roots</option></arg>
+      <arg choice='plain'><option>--print-live</option></arg>
+      <arg choice='plain'><option>--print-dead</option></arg>
+      <arg choice='plain'><option>--delete</option></arg>
+    </group>
+  </cmdsynopsis>
+</refsynopsisdiv>
+
+<refsection><title>Description</title>
+
+<para>The command <command>nix-collect-garbage</command> is an
+obsolete wrapper around <link
+linkend="rsec-nix-store-gc"><command>nix-store
+--gc</command></link>.</para>
+
+</refsection>
+
+</refentry>
