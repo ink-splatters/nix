@@ -1,7 +1,4 @@
-#pragma once
-///@file
-
-#include <nlohmann/json.hpp>
+#include "json-utils.hh"
 
 namespace nix {
 
