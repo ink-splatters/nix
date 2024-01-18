@@ -1,5 +1,5 @@
 {
-  description = "can fetch a git repo via http";
+  description = "can fetch a git repo via ssh";
   script = ''
     # add a file to the repo
     client.succeed(f"""
@@ -15,12 +15,14 @@
 
     # push to the server
     client.succeed(f"""
-      {repo.git} push origin main
+      {repo.git} push origin-ssh main
     """)
 
     # fetch the repo via nix
     fetched1 = client.succeed(f"""
-      nix eval --impure --raw --expr "(builtins.fetchGit {repo.remote}).outPath"
+      nix eval --impure --raw --expr '
+        (builtins.fetchGit "{repo.remote_ssh}").outPath
+      '
     """)
 
     # check if the committed file is there
@@ -30,7 +32,9 @@
 
     # check if the revision is the same
     rev1_fetched = client.succeed(f"""
-      nix eval --impure --raw --expr "(builtins.fetchGit {repo.remote}).rev"
+      nix eval --impure --raw --expr '
+        (builtins.fetchGit "{repo.remote_ssh}").rev
+      '
     """).strip()
     assert rev1 == rev1_fetched, f"rev1: {rev1} != rev1_fetched: {rev1_fetched}"
   '';
