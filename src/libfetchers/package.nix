@@ -1,10 +1,11 @@
 { lib
 , mkMesonLibrary
 
-, openssl
-
 , nix-util
 , nix-store
+, nlohmann_json
+, libgit2
+, curl
 
 # Configuration Options
 
@@ -16,7 +17,7 @@ let
 in
 
 mkMesonLibrary (finalAttrs: {
-  pname = "nix-main";
+  pname = "nix-fetchers";
   inherit version;
 
   workDir = ./.;
@@ -30,10 +31,15 @@ mkMesonLibrary (finalAttrs: {
     (fileset.fileFilter (file: file.hasExt "hh") ./.)
   ];
 
+  buildInputs = [
+    libgit2
+    curl
+  ];
+
   propagatedBuildInputs = [
-    nix-util
     nix-store
-    openssl
+    nix-util
+    nlohmann_json
   ];
 
   preConfigure =

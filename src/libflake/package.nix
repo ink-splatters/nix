@@ -1,10 +1,11 @@
 { lib
 , mkMesonLibrary
 
-, openssl
-
 , nix-util
 , nix-store
+, nix-fetchers
+, nix-expr
+, nlohmann_json
 
 # Configuration Options
 
@@ -16,7 +17,7 @@ let
 in
 
 mkMesonLibrary (finalAttrs: {
-  pname = "nix-main";
+  pname = "nix-flake";
   inherit version;
 
   workDir = ./.;
@@ -31,9 +32,11 @@ mkMesonLibrary (finalAttrs: {
   ];
 
   propagatedBuildInputs = [
-    nix-util
     nix-store
-    openssl
+    nix-util
+    nix-fetchers
+    nix-expr
+    nlohmann_json
   ];
 
   preConfigure =

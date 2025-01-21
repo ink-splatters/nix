@@ -1,10 +1,7 @@
 { lib
 , mkMesonLibrary
 
-, openssl
-
 , nix-util
-, nix-store
 
 # Configuration Options
 
@@ -16,7 +13,7 @@ let
 in
 
 mkMesonLibrary (finalAttrs: {
-  pname = "nix-main";
+  pname = "nix-util-c";
   inherit version;
 
   workDir = ./.;
@@ -26,14 +23,14 @@ mkMesonLibrary (finalAttrs: {
     ../../.version
     ./.version
     ./meson.build
+    ./meson.options
     (fileset.fileFilter (file: file.hasExt "cc") ./.)
     (fileset.fileFilter (file: file.hasExt "hh") ./.)
+    (fileset.fileFilter (file: file.hasExt "h") ./.)
   ];
 
   propagatedBuildInputs = [
     nix-util
-    nix-store
-    openssl
   ];
 
   preConfigure =
@@ -43,6 +40,9 @@ mkMesonLibrary (finalAttrs: {
       chmod u+w ./.version
       echo ${version} > ../../.version
     '';
+
+  mesonFlags = [
+  ];
 
   meta = {
     platforms = lib.platforms.unix ++ lib.platforms.windows;
